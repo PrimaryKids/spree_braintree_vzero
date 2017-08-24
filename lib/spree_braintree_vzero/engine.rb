@@ -1,7 +1,7 @@
 module SpreeBraintreeVzero
   class Engine < Rails::Engine
-    require 'spree/core'
-    isolate_namespace Spree
+    #require 'spree/core'
+    #isolate_namespace Spree
     engine_name 'spree_braintree_vzero'
 
     # use rspec for tests
@@ -10,8 +10,15 @@ module SpreeBraintreeVzero
     end
 
     def self.activate
+    puts "!!!!! #{Rails.root}"
+      %w(engines/api/app/controllers).each do |dir|
+        Dir["#{Rails.root}/#{dir}/**/*.rb"].sort.each { |f| puts f; require f }
+      end
+
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
-        Rails.configuration.cache_classes ? require(c) : load(c)
+        #Rails.configuration.cache_classes ? require(c) : load(c)
+        puts c
+        require c
       end
     end
 
