@@ -1,4 +1,4 @@
-class CreateSpreeBraintreeCheckouts < ActiveRecord::Migration
+class CreateSpreeBraintreeCheckouts < Primary::IndexMigration
   def change
     create_table :spree_braintree_checkouts do |t|
       t.string :transaction_id, index: true
