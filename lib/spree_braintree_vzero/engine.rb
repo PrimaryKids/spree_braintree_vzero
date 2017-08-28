@@ -9,6 +9,14 @@ module SpreeBraintreeVzero
       g.test_framework :rspec
     end
 
+    Dir.glob('../../../primary/engines/*/app/**/*/').each do |f|
+      config.autoload_paths << f
+    end
+
+    Dir.glob('../../../primary/engines/*/lib/**/*/').each do |f|
+      config.autoload_paths << f
+    end
+
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
