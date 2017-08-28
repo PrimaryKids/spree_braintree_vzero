@@ -68,8 +68,7 @@ Spree::Order.class_eval do
   def payment_required?
     # default payment processing requires order to have state == payment
     # so there is no need to divide this method for checkout steps and actual payment processing
-    return false if paid_with_paypal_express?
-    total.to_f > 0.0
+    paid_with_paypal_express? ? false : true
   end
 
   def confirmation_required?
