@@ -1,20 +1,13 @@
 module SpreeBraintreeVzero
   class Engine < Rails::Engine
-    #require 'spree/core'
-    #isolate_namespace Spree
+    require 'spree/core'
+    require 'spree/backend'
+    isolate_namespace Spree
     engine_name 'spree_braintree_vzero'
 
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec
-    end
-
-    Dir.glob('../../../primary/engines/*/app/**/*/').each do |f|
-      config.autoload_paths << f
-    end
-
-    Dir.glob('../../../primary/engines/*/lib/**/*/').each do |f|
-      config.autoload_paths << f
     end
 
     def self.activate
